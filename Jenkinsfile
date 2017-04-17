@@ -2,22 +2,23 @@ pipeline {
     agent any
 
     stages {
-        stage('Build') {
+        stage('Clone') {
             steps {
-                echo 'Building..'
-                sleep 120
+              echo 'Clone....'
+
+              checkout scm
             }
         }
         stage('Test') {
             steps {
-                echo 'Testing..'
-                sleep 160
+              echo 'Test....'
+              sh "./docker.sh"
             }
         }
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
-                sleep 160
+                sleep 460
             }
         }
     }
